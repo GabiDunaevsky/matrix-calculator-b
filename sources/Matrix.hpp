@@ -38,9 +38,9 @@ namespace zich{
             double static calculateSum(const Matrix& mat);
             double getLoc(int row, int column)const;
             bool is_number(const std::string& s);
-            //-----------------------------
-            // Arithmetic Operators
-            //-----------------------------
+        
+            // Arithmetic Operators:
+            
 
             Matrix operator-() const;
             Matrix operator-(const Matrix &matrix);
@@ -55,9 +55,9 @@ namespace zich{
             Matrix operator*(const Matrix &mat)const;
             Matrix operator*=(double num);
 
-            //-----------------------------
-            // Comparison Operators
-            //-----------------------------
+            
+            // Comparison Operators:
+            
 
             friend bool operator!=(const Matrix &mat1,const Matrix &mat2);
 
@@ -70,9 +70,9 @@ namespace zich{
             friend bool operator>(const Matrix &mat1,const Matrix &mat2);
 
 
-            //-----------------------------
-            // Increment Decrement Operators
-            //-----------------------------
+            
+            // Increment Decrement Operators:
+        
 
             Matrix operator--();
             Matrix operator--(int number);
@@ -80,15 +80,15 @@ namespace zich{
             Matrix operator++();
             Matrix operator++(int number);
 
-            //-----------------------------
-            // Friend Operators
-            //-----------------------------
+            
+            // Friend Operators:
+            
 
             friend Matrix operator*(double scalar,const Matrix &matrix);
             
-                //-----------------------------
-                // I/O Operators
-                //-----------------------------
+                
+                // I/O Operators:
+                
             friend std::ostream& operator<<(std::ostream &out, const Matrix &matrix);
             friend std::istream& operator>>(std::istream& in, Matrix &matrix);
     };
