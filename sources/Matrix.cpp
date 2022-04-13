@@ -258,8 +258,8 @@ std::istream& zich::operator>>(std::istream& in, Matrix &matrix){
     string op1 = ", "; // between lines
     string op2 = " "; // between values
     string sign;
-    string num_str;
-    double num = 0;
+    string sNumber;
+    double number = 0;
 
     if (s.find(op1) != std::string::npos){
         sign = s.substr(0, s.find(op1));
@@ -279,38 +279,36 @@ std::istream& zich::operator>>(std::istream& in, Matrix &matrix){
         if (s.find(op1) != std::string::npos){
            sign = s.substr(0, s.find(op1));
             if(sign.at(0) != '[' && sign.at(sign.length()-1) != ']'){
-                throw invalid_argument("input is not correct, 1");
+                throw invalid_argument("wrong input, 1");
             }
             sign=sign.substr(1, sign.length()-2);
         }
         else{
             sign = s;
             if(sign.at(0) != '[' && sign.at(sign.length()-2) != ']' && sign.at(sign.length()-1) != '\n'){
-                throw invalid_argument("input is not correct, 2");
+                throw invalid_argument("wrong input, 2");
             }
             sign = sign.substr(1, sign.find_first_of(']'));
             sign = sign.substr(0, sign.length()-1);
         }
-
-        string t = sign;
         int counter = 0;
         while(!sign.empty()){
             if(counter >= columns){
-                throw invalid_argument("input is not correct");
+                throw invalid_argument("wrong input");
             }
-            num_str = sign.substr(0, sign.find(op2));
+            sNumber = sign.substr(0, sign.find(op2));
 
             if (sign.find(op2) != std::string::npos){
-                num_str = sign.substr(0, sign.find(op2));
+                sNumber = sign.substr(0, sign.find(op2));
             }
             else{
-                num_str = sign;
+                sNumber = sign;
             }
-            if(!is_number(num_str)){
-                throw invalid_argument("input is not correct");
+            if(!is_number(sNumber)){
+                throw invalid_argument("wrong input");
             }
-            num = stod(num_str);
-            m.at(location) = num;
+            number = stod(sNumber);
+            m.at(location) = number;
 
             if (sign.find(op2) != std::string::npos){
                 sign.erase(0, sign.find(op2) + op2.length());
@@ -322,7 +320,7 @@ std::istream& zich::operator>>(std::istream& in, Matrix &matrix){
             location++;
         }
         if(counter < columns || !sign.empty()){
-            throw invalid_argument("input is not correct");
+            throw invalid_argument("wrong input");
         }
 
         if (s.find(op1) != std::string::npos){
