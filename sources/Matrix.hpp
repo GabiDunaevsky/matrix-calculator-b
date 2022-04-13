@@ -13,8 +13,8 @@ using namespace std;
 namespace zich{
     class Matrix{
         std::vector<double> matrixData;
-        unsigned numCol;
-        unsigned numRow;
+        int numCol;
+        int numRow;
         
         public:
 
@@ -35,6 +35,9 @@ namespace zich{
         public:
             void static checkSizes(const Matrix& mat1 ,const Matrix& mat2 );
             double getVal(int row,int col)const;
+            double static calculateSum(const Matrix& mat);
+            double getLoc(int row, int column)const;
+            bool is_number(const std::string& s);
             //-----------------------------
             // Arithmetic Operators
             //-----------------------------
@@ -49,6 +52,7 @@ namespace zich{
 
             Matrix operator*(double num) const;
             Matrix operator*=(const Matrix &mat);
+            Matrix operator*(const Matrix &mat)const;
             Matrix operator*=(double num);
 
             //-----------------------------
@@ -70,10 +74,10 @@ namespace zich{
             // Increment Decrement Operators
             //-----------------------------
 
-            Matrix& operator--();
+            Matrix operator--();
             Matrix operator--(int number);
 
-            Matrix& operator++();
+            Matrix operator++();
             Matrix operator++(int number);
 
             //-----------------------------
@@ -81,13 +85,11 @@ namespace zich{
             //-----------------------------
 
             friend Matrix operator*(double scalar,const Matrix &matrix);
-            friend Matrix operator*(const Matrix &matrix,double scalar);
-            friend Matrix operator*(const Matrix &matrix1,const Matrix &matrix2);
             
                 //-----------------------------
                 // I/O Operators
                 //-----------------------------
             friend std::ostream& operator<<(std::ostream &out, const Matrix &matrix);
-            friend std::istream& operator>>(std::istream &in, const Matrix &matrix);
+            friend std::istream& operator>>(std::istream& in, Matrix &matrix);
     };
 }
